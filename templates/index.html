@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <h1>Menú Principal</h1>
+
+    <!-- Botón para redirigir a la página de registro de usuario -->
+    <button onclick="window.location.href='/registrar_usuario'">Registrar Usuario</button>
+
+    <!-- Botón para mostrar usuarios registrados -->
+    <button onclick="mostrarUsuarios()">Mostrar Usuarios Registrados</button>
+
+    <!-- Botón para gestionar artículos -->
+    <button onclick="window.location.href='/gestionar_articulos'">Gestionar Artículos</button>
+
+    <!-- Botón para mostrar artículos registrados -->
+    <button onclick="mostrarArticulos()">Mostrar Artículos Registrados</button>
+
+    <!-- Área para mostrar la tabla de usuarios registrados -->
+    <div id="usuariosRegistrados" style="display:none;">
+        <h2>Usuarios Registrados</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Identificación</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Nacimiento</th>
+                    <th>Ocupación</th>
+                    <th>Estudia</th>
+                </tr>
+            </thead>
+            <tbody id="tablaUsuarios"></tbody>
+        </table>
+    </div>
+
+    <!-- Área para mostrar la tabla de artículos registrados -->
+    <div id="articulosRegistrados" style="display:none;">
+        <h2>Artículos Registrados</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Categoría</th>
+                    <th>Disponible</th>
+                </tr>
+            </thead>
+            <tbody id="tablaArticulos"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function mostrarUsuarios() {
+            // Solicitar datos de usuarios registrados
+            fetch('/mostrar_usuarios')
+                .then(response => response.json())
+                .then(data => {
+                    const tablaUsuarios = document.getElementById('tablaUsuarios');
+                    tablaUsuarios.innerHTML = ''; // Limpiar tabla
+
+                    data.forEach(usuario => {
+                        const fila = document.createElement('tr');
+                        fila.innerHTML = `<td>${usuario.id}</td>
+                                          <td>${usuario.identificacion}</td>
+                                          <td>${usuario.nombre}</td>
+                                          <td>${usuario.direccion}</td>
+                                          <td>${usuario.celular}</td>
+                                          <td>${usuario.correo}</td>
+                                          <td>${usuario.nacimiento}</td>
+                                          <td>${usuario.ocupacion}</td>
+                                          <td>${usuario.estudia}</td>`;
+                        tablaUsuarios.appendChild(fila);
+                    });
+
+                    document.getElementById('usuariosRegistrados').style.display = 'block'; // Mostrar la tabla
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function mostrarArticulos() {
+            // Solicitar datos de artículos registrados
+            fetch('/mostrar_articulos')
+                .then(response => response.json())
+                .then(data => {
+                    const tablaArticulos = document.getElementById('tablaArticulos');
+                    tablaArticulos.innerHTML = ''; // Limpiar tabla
+
+                    data.forEach(articulo => {
+                        const fila = document.createElement('tr');
+                        fila.innerHTML = `<td>${articulo.id}</td>
+                                          <td>${articulo.codigo}</td>
+                                          <td>${articulo.titulo}</td>
+                                          <td>${articulo.autor}</td>
+                                          <td>${articulo.categoria_id}</td>
+                                          <td>${articulo.disponible}</td>`;
+                        tablaArticulos.appendChild(fila);
+                    });
+
+                    document.getElementById('articulosRegistrados').style.display = 'block'; // Mostrar la tabla
+                })
+                .catch(error => console.error('Error al cargar los artículos:', error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Artículos</title>
+</head>
+<body>
+    <h1>Gestionar Artículos</h1>
+
+    <!-- Botón para agregar categoría -->
+    <button onclick="window.location.href='/agregar_categoria'">Agregar Categoría</button>
+
+    <!-- Botón para registrar artículo -->
+    <button onclick="window.location.href='/registrar_articulo'">Registrar Artículo</button>
+
+    <!-- Botón para verificar disponibilidad de artículo -->
+    <button onclick="window.location.href='/verificar_disponibilidad'">Verificar Disponibilidad</button>
+
+    <!-- Botón para seguimiento de artículo -->
+    <button onclick="window.location.href='/seguimiento_articulo'">Seguimiento Artículo</button>
+
+    <!-- Botón para reportar artículo -->
+    <button onclick="window.location.href='/reportar_articulo'">Reportar Artículo</button>
+
+    <!-- Botón para regresar al menú principal -->
+    <button onclick="window.location.href='/'">Regresar al Menú Principal</button>
+
+    {% if mensaje %}
+    <p>{{ mensaje }}</p>
+    {% endif %}
+</body>
+</html>

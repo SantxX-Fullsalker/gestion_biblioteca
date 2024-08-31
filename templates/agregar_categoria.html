@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Categoría</title>
+</head>
+<body>
+    <h1>Agregar Categoría</h1>
+    <!-- Formulario para agregar una categoría -->
+    <form method="POST" action="/agregar_categoria">
+        <label for="nombre">Nombre de la Categoría:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea name="descripcion"></textarea><br>
+
+        <input type="submit" value="Agregar Categoría">
+    </form>
+
+    <!-- Botón para regresar al menú de gestión de artículos -->
+    <button onclick="window.location.href='/gestionar_articulos'">Regresar a Gestión de Artículos</button>
+
+    {% if mensaje %}
+    <p>{{ mensaje }}</p>
+    {% endif %}
+</body>
+</html>

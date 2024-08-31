@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Usuario</title>
+</head>
+<body>
+    <h1>Registrar Usuario</h1>
+    <form method="POST" action="/registrar_usuario">
+        <label for="identificacion">Identificación:</label>
+        <input type="text" name="identificacion" required><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" required><br>
+
+        <label for="celular">Celular:</label>
+        <input type="text" name="celular" required><br>
+
+        <label for="correo">Correo:</label>
+        <input type="email" name="correo" required><br>
+
+        <label for="nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" name="nacimiento" required><br>
+
+        <label for="ocupacion">Ocupación:</label>
+        <input type="text" name="ocupacion" required><br>
+
+        <label for="estudia">¿Estudia?</label>
+        <input type="checkbox" name="estudia" value="Sí"><br>
+
+        <input type="submit" value="Registrar">
+    </form>
+
+    {% if mensaje %}
+    <p>{{ mensaje }}</p>
+    {% endif %}
+
+    <button onclick="window.location.href='/'">Volver al Menú Principal</button>
+</body>
+</html>
